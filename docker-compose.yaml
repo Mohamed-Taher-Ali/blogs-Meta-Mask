@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./front-blog
+    ports:
+      - "8081:8081"
+    env_file:
+      - ./front-blog/.env
+    networks:
+      - fullstack-network
+
+  backend:
+    build:
+      context: ./back-blog
+    ports:
+      - "5000:5000"
+    networks:
+      - fullstack-network
+
+networks:
+  fullstack-network:
+    driver: bridge
